@@ -1,4 +1,4 @@
-#include "../../Include/Main/QFunctionIndicatorWnd.h"
+#include "Main/QFunctionIndicatorWnd.h"
 
 #include <QApplication>
 

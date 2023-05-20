@@ -16,21 +16,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Src/Dialog/QFuncNumDlg.cpp \
     Src/Dialog/QFunctionDlg.cpp \
     Src/Dialog/QNormalFuncDlg.cpp \
+    Src/Dialog/QPolarFuncDlg.cpp \
+    Src/Dialog/QSetXYRangeDlg.cpp \
+    Src/Dialog/QTwoFuncDlg.cpp \
     Src/Main/QFunctionIndicatorWnd.cpp \
-    Src/Main/main.cpp \
+    Src/Main/main.cpp
 
 HEADERS += \
+    Include/Dialog/QFuncNumDlg.h \
     Include/Dialog/QFunctionDlg.h \
     Include/Dialog/QNormalFuncDlg.h \
-    Include/Main/QFunctionIndicatorWnd.h \
+    Include/Dialog/QPolarFuncDlg.h \
+    Include/Dialog/QSetXYRangeDlg.h \
+    Include/Dialog/QTwoFuncDlg.h \
+    Include/Main/QFunctionIndicatorWnd.h
 
 
 FORMS += \
+    Ui/QFuncNumDlg.ui \
     Ui/QFunctionDlg.ui \
     Ui/QFunctionIndicatorWnd.ui \
-    Ui/QNormalFuncDlg.ui
+    Ui/QNormalFuncDlg.ui \
+    Ui/QPolarFuncDlg.ui \
+    Ui/QSetXYRangeDlg.ui \
+    Ui/QTwoFuncDlg.ui
+
+INCLUDEPATH += $$PWD/Include
+INCLUDEPATH += $$PWD/Include/Dialog
+INCLUDEPATH += $$PWD/Include/Main
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

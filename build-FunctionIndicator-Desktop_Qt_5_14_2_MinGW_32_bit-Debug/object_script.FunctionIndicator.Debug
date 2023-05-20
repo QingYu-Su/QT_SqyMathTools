@@ -1,0 +1,15 @@
+debug/QFuncNumDlg.o
+debug/QFunctionDlg.o
+debug/QNormalFuncDlg.o
+debug/QPolarFuncDlg.o
+debug/QSetXYRangeDlg.o
+debug/QTwoFuncDlg.o
+debug/QFunctionIndicatorWnd.o
+debug/main.o
+debug/moc_QFuncNumDlg.o
+debug/moc_QFunctionDlg.o
+debug/moc_QNormalFuncDlg.o
+debug/moc_QPolarFuncDlg.o
+debug/moc_QSetXYRangeDlg.o
+debug/moc_QTwoFuncDlg.o
+debug/moc_QFunctionIndicatorWnd.o

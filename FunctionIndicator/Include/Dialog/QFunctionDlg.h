@@ -22,7 +22,7 @@ class QFunctionDlg : public QDialog
     Q_OBJECT
 
 public:
-    explicit QFunctionDlg(QWidget *parent = nullptr);
+    explicit QFunctionDlg(char dv, SML::MathExpression &expression, QString &editStr,QWidget *parent = nullptr);
     ~QFunctionDlg();
 
 private slots:
@@ -93,6 +93,10 @@ private slots:
     void on_m_Delete_clicked();
 
     void on_m_DV_clicked();
+
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
 
 private:
     Ui::QFunctionDlg *ui;

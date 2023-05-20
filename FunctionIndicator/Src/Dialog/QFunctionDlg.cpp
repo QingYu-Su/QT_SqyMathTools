@@ -1,12 +1,16 @@
-#include "../../Include/Dialog/QFunctionDlg.h"
+#include "Dialog/QFunctionDlg.h"
 #include "ui_QFunctionDlg.h"
 
-QFunctionDlg::QFunctionDlg(QWidget *parent) :
+QFunctionDlg::QFunctionDlg(char dv, SML::MathExpression &expression, QString &editStr,QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::QFunctionDlg)
+    ui(new Ui::QFunctionDlg),
+    m_DV(dv),
+    m_Expression(expression),
+    m_EditStr(editStr)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);  //设置窗口不可更改大小
+    ui -> m_EditFunction -> setText(this->m_EditStr);  //显示编辑框
 }
 
 QFunctionDlg::~QFunctionDlg()
@@ -353,10 +357,19 @@ void QFunctionDlg::on_m_Delete_clicked()
 
 void QFunctionDlg::on_m_DV_clicked()
 {
-//    std::string dv;
-//    dv.push_back(this->m_DV);
-    std::string dv = "x";
+    std::string dv;
+    dv.push_back(this->m_DV);
     this->m_EditStr += dv.c_str();
     this->m_Expression.push_back(dv);
     ui -> m_EditFunction -> setText(this->m_EditStr);  //显示编辑框
+}
+
+void QFunctionDlg::on_buttonBox_accepted()
+{
+    done(Accepted);
+}
+
+void QFunctionDlg::on_buttonBox_rejected()
+{
+    done(Rejected);
 }
