@@ -15,4 +15,4 @@
 
 - 请注意：其中SqyMathLibrary为静态库，被其他项目所引用，无法独立运行
 
-- 用户可选择Calculator与FunctionIndicator为启动程序在本地运行
+- 用户可选择Calculator与FunctionIndicator为启动程序在本地运行，但是必须先构建SqyMathLibrary才可以
