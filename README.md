@@ -1,0 +1,2 @@
+# QT_SqyMathTools
+这是从MFC移植到QT中的项目，原项目见SqyMathTools
