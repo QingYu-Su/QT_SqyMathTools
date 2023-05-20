@@ -247,7 +247,6 @@ Makefile: ../FunctionIndicator/FunctionIndicator.pro ../../../../Tools/QT/5.14.2
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/qt_config.prf \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/toolchain.prf \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/default_pre.prf \
@@ -276,6 +275,7 @@ Makefile: ../FunctionIndicator/FunctionIndicator.pro ../../../../Tools/QT/5.14.2
 		../../../../Tools/QT/5.14.2/mingw73_32/lib/Qt5Gui.prl \
 		../../../../Tools/QT/5.14.2/mingw73_32/lib/Qt5Core.prl \
 		../../../../Tools/QT/5.14.2/mingw73_32/lib/qtmain.prl \
+		.qmake.stash \
 		../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\FunctionIndicator\FunctionIndicator.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/spec_pre.prf:
@@ -455,7 +455,6 @@ Makefile: ../FunctionIndicator/FunctionIndicator.pro ../../../../Tools/QT/5.14.2
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/qt_config.prf:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/toolchain.prf:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/default_pre.prf:
@@ -484,6 +483,7 @@ Makefile: ../FunctionIndicator/FunctionIndicator.pro ../../../../Tools/QT/5.14.2
 ../../../../Tools/QT/5.14.2/mingw73_32/lib/Qt5Gui.prl:
 ../../../../Tools/QT/5.14.2/mingw73_32/lib/Qt5Core.prl:
 ../../../../Tools/QT/5.14.2/mingw73_32/lib/qtmain.prl:
+.qmake.stash:
 ../../../../Tools/QT/5.14.2/mingw73_32/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\FunctionIndicator\FunctionIndicator.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

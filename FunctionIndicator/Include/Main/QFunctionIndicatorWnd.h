@@ -7,29 +7,7 @@
 #include "MathFunction.h"
 namespace SML = SqyMathLibrary;  //命名空间重命名
 
-//绘制所需的函数数据
-struct DrawFuncData {
-    std::vector<QString> expressionStr;  //函数表达式字符串，由于可能表达式不止一个，故用一个数组存放
-    SML::FunctionMap *drawPoint;  //函数绘制点
-    size_t precision; //函数精细度
-    int lineWidth;  //线宽
-    int lineType;  //线型
-    QColor lineColor;  //线颜色
-};
 
-//移动模式
-enum MoveMode {
-    BAN, //禁止移动
-    MOVE,  //允许移动
-    MOVING  //正在移动
-};
-
-//画面移动时的状态数据
-struct MoveStatus {
-    QPoint point;   //当前鼠标点
-    double minX, maxX;  //x轴范围
-    double minY, maxY;  //y轴范围
-};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class QFunctionIndicatorWnd; }
@@ -38,6 +16,36 @@ QT_END_NAMESPACE
 class QFunctionIndicatorWnd : public QMainWindow
 {
     Q_OBJECT
+
+    //绘制所需的函数数据
+    struct DrawFuncData {
+        std::vector<QString> expressionStr;  //函数表达式字符串，由于可能表达式不止一个，故用一个数组存放
+        SML::FunctionMap *drawPoint;  //函数绘制点
+        size_t precision; //函数精细度
+        int lineWidth;  //线宽
+        int lineType;  //线型
+        QColor lineColor;  //线颜色
+    };
+
+    //移动模式
+    enum MoveMode {
+        BAN, //禁止移动
+        MOVE,  //允许移动
+        MOVING  //正在移动
+    };
+
+    //画面移动时的状态数据
+    struct MoveStatus {
+        QPoint point;   //当前鼠标点
+        double minX, maxX;  //x轴范围
+        double minY, maxY;  //y轴范围
+    };
+
+    //函数点绘制数据
+    struct FuncPointDrawData{
+        QRect textRect;  //绘制矩形
+        QString msg;  //绘制字符串
+    };
 
 public:
     QFunctionIndicatorWnd(QWidget *parent = nullptr);
@@ -120,7 +128,7 @@ private:
     void ShrinkImage();  //缩小坐标轴图像
     double GetDistacne(SML::FunctionPoint &a, SML::FunctionPoint &b);  //获得两个函数图像点的距离
     SML::FunctionPoint GetClosestPoint(QPoint point);  //获得离光标点最近的函数图像点，没有则返回INF点
-    bool ShowFunctionPoint(QPoint point);  //在图像中显示光标所在的函数坐标点信息,false表示光标不在函数图像上
+    bool GetFunctionPoint(QPoint point);  //获得图像中光标所在的函数坐标点信息,false表示光标不在函数图像上
     void ShowFunctionNum();  //在状态栏中显示光标处的函数序号
     void ShowFunctionInformation(QPoint point);  //显示离光标点最近的函数的相关信息,包括函数点坐标和函数序号
     void ShowImagePoint(QPoint point);	//在状态栏显示光标所在的图像坐标
@@ -152,5 +160,7 @@ private:
     //状态栏控件
     QLabel *m_StatusBarItem1;
     QLabel *m_StatusBarItem2;
+
+    FuncPointDrawData m_FuncPointDrawData;  //函数点绘制数据
 };
 #endif // QFUNCTIONINDICATORWND_H

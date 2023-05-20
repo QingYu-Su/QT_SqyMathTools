@@ -95,6 +95,11 @@ void QFunctionIndicatorWnd::paintEvent(QPaintEvent *){
         ui -> statusbar -> setVisible(false);
     }
 
+    //绘制函数点数据，非空则绘制
+    if ( m_FuncPointDrawData.msg.isEmpty() == false ){
+        p -> drawText(m_FuncPointDrawData.textRect, Qt::AlignCenter, m_FuncPointDrawData.msg);
+    }
+
     delete  p;
 }
 
@@ -795,7 +800,10 @@ SML::FunctionPoint QFunctionIndicatorWnd::GetClosestPoint(QPoint point) {
     return res;
 }
 
-bool QFunctionIndicatorWnd::ShowFunctionPoint(QPoint point) {
+bool QFunctionIndicatorWnd::GetFunctionPoint(QPoint point) {
+
+    //数据清空
+    m_FuncPointDrawData.msg.clear();
 
     //获得里该点最近的函数图像点
     SML::FunctionPoint closestPoint = this->GetClosestPoint(point);
@@ -810,8 +818,12 @@ bool QFunctionIndicatorWnd::ShowFunctionPoint(QPoint point) {
     //必须在视图坐标系上也足够近才显示函数信息
     if (abs(outputX - point.x()) > 5 || abs(outputY - point.y()) > 5) return false;
 
+    //数据填充，留待绘图事件进行绘画
+    m_FuncPointDrawData.msg = QString::number(closestPoint.first, 'f', 2) + "，" + QString::number(closestPoint.second, 'f', 2);
+    m_FuncPointDrawData.textRect = QRect(outputX, outputY - 10, 100, 20);
 
-    //QT在其他事件绘图会被绘画事件所覆盖，导致该绘画无效，这个方法需要重写，先屏蔽
+
+    //QT在其他事件绘图会被绘画事件所覆盖，导致该绘画无效
 //    //在函数图像上显示最近函数点坐标
 //    QPainter *p = new QPainter(this);
 //    QString msg = QString::number(closestPoint.first, 'g', 2) + "," + QString::number(closestPoint.second, 'g', 2);
@@ -830,24 +842,19 @@ void QFunctionIndicatorWnd::ShowFunctionNum() {
 }
 
 void QFunctionIndicatorWnd::ShowFunctionInformation(QPoint point) {
-    static bool marked = false;  //函数信息标记布尔值，初始为false
 
     //移动模式为正在移动或不允许显示函数信息，则不显示函数信息
     if (m_MoveMode != MOVING  && m_ShowFuncInfo == true) {
 
-        //标记布尔值为真，表示函数信息已被标记显示，需要刷新画面和状态栏
-        //避免上一个显示的函数信息与当前显示的函数信息发生重叠现象
-        if (marked == true) {
-            update();
-            this -> m_StatusBarItem2 -> setText("当前函数序号");
-
-        }
-
-        //如果函数点坐标显示成功，则显示函数序号，并且函数信息标记布尔值设为真
-        if (this->ShowFunctionPoint(point)) {
+        //如果函数点坐标显示成功，则显示函数序号
+        if (this->GetFunctionPoint(point)) {
             this->ShowFunctionNum();
-            marked = true;
+        }else{
+            this -> m_StatusBarItem2 -> setText("当前函数序号");
         }
+
+        //刷新绘图
+        update();
     }
 }
 

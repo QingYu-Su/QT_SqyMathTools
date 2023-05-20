@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../../FunctionIndicator/QTwoFuncDlg.h"
+#include "../../FunctionIndicator/Include/Dialog/QTwoFuncDlg.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
